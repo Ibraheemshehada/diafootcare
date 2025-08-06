@@ -1,0 +1,15 @@
+{
+
+  "app_name": "Dia FootCare",
+  "app_name_light": "Dia ",
+  "app_name_dark": "FootCare",
+  "login": "Login",
+  "login_subtitle": "Please log in to continue monitoring your wound",
+  "email_or_mobile": "E-mail / Mobile number",
+  "password": "Password",
+  "remember_me": "Remember Me",
+  "forgot_password": "Forget The Password ?",
+  "create_account": "Create Account",
+  "email_required": "Email or phone is required",
+  "password_short": "Password must be at least 6 characters"
+}
