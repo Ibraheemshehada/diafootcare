@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
-
+  primaryColor: const Color(0xff077FFF),
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color(0xff077FFF),
     brightness: Brightness.dark,

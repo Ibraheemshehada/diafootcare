@@ -12,7 +12,7 @@ void main() async {
     EasyLocalization(
       supportedLocales: [Locale('en'), Locale('ar')],
       path: 'assets/translations',
-      fallbackLocale: Locale('ar'),
+      fallbackLocale: Locale('en'),
       child: DiaFootApp(),
     ),
   );

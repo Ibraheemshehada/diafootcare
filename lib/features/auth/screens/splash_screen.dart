@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
             Spacer(),
             LoadingAnimationWidget.hexagonDots(
-              color: theme.primaryColor,
+              color:  const Color(0xff077FFF),
               size: 45.w,
             ),
 

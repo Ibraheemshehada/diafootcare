@@ -1,3 +1,4 @@
+import 'package:diafoot_care/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -36,11 +37,11 @@ class LoginViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text,
-      );
-
+      // await FirebaseAuth.instance.signInWithEmailAndPassword(
+      //   email: emailController.text.trim(),
+      //   password: passwordController.text,
+      // );
+      Navigator.pushNamed(context, AppRoutes.mainShell);
       // TODO: Navigate to HomeScreen
     } on FirebaseAuthException catch (e) {
       // TODO: Show dialog/snackbar

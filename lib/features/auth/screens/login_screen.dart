@@ -1,3 +1,4 @@
+import 'package:diafoot_care/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/login_form.dart';
@@ -12,6 +13,7 @@ class LoginScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
+
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -83,12 +85,17 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: 20.h),
 
               // Forgot Password Text
-              Text(
-                tr('forgot_password'),
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  color: Colors.blue,
-                  decoration: TextDecoration.underline,
+              InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, AppRoutes.forgetPassword);
+                },
+                child: Text(
+                  tr('forgot_password'),
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    color: Colors.blue,
+
+                  ),
                 ),
               ),
 
@@ -102,7 +109,9 @@ class LoginScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.fromLTRB(24.w, 0, 24.w, 24.h),
         child: OutlinedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, AppRoutes.signup);
+          },
           style: OutlinedButton.styleFrom(
             padding: EdgeInsets.symmetric(vertical: 14.h),
             // minimumSize: Size(double.infinity, 48.h),

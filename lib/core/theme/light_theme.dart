@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-
+  primaryColor: const Color(0xff077FFF),
   colorScheme: ColorScheme.fromSeed(
+    primary: const Color(0xff077FFF),
     seedColor: const Color(0xff077FFF),
     brightness: Brightness.light,
   ),
