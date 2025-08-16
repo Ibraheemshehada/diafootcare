@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,7 +17,7 @@ class PreviewScreen extends StatelessWidget {
     final t = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Preview Your Photo', style: TextStyle(fontSize: 18.sp)),
+        title: Text('preview_your_photo'.tr(), style: TextStyle(fontSize: 18.sp)),
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(16.w, 12.h, 16.w, 16.h),
@@ -42,7 +43,7 @@ class PreviewScreen extends StatelessWidget {
             ),
             SizedBox(height: 14.h),
             Text(
-              "Make sure the photo is clear and the wound is\nvisible before saving.",
+              'preview_hint'.tr(),
               style: t.textTheme.bodyMedium?.copyWith(
                 fontSize: 14.sp,
                 color: t.colorScheme.onSurface.withOpacity(.7),
@@ -59,12 +60,12 @@ class PreviewScreen extends StatelessWidget {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => AnalysisLoadingScreen( imagePath: '',),
+                            builder: (_) => const AnalysisLoadingScreen(imagePath: ''),
                           ),
                         );
                       },
                       icon: const Icon(Icons.bookmark_add_outlined),
-                      label: Text('Save and Continue', style: TextStyle(fontSize: 14.sp)),
+                      label: Text('save_and_continue'.tr(), style: TextStyle(fontSize: 14.sp)),
                     ),
                   ),
                 ),
@@ -75,7 +76,7 @@ class PreviewScreen extends StatelessWidget {
                     child: OutlinedButton.icon(
                       onPressed: () => Navigator.pop(context),
                       icon: const Icon(Icons.refresh),
-                      label: Text('Re-take Photo', style: TextStyle(fontSize: 14.sp)),
+                      label: Text('retake_photo'.tr(), style: TextStyle(fontSize: 14.sp)),
                     ),
                   ),
                 ),

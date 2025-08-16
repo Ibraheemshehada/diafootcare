@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,7 +16,6 @@ class WhatsNewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Theme.of(context);
 
-    // Outer container keeps the nice shadow + radius
     return Container(
       margin: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 12.h),
       decoration: BoxDecoration(
@@ -32,29 +32,24 @@ class WhatsNewCard extends StatelessWidget {
             final h = c.maxHeight == double.infinity ? 140.h : c.maxHeight;
 
             return Container(
-              // padding: EdgeInsets.all(16.w),
               decoration: BoxDecoration(
-
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    const Color(0xff077FFF).withOpacity(.95), // keep brand blue bright
+                    const Color(0xff077FFF).withOpacity(.95),
                     const Color(0xff077FFF),
                   ],
                 ),
               ),
               child: Stack(
                 children: [
-
-
-                  // Top-right decorative SVG
                   Positioned(
-                    top:0,             // slight overflow upward
-                    right: 0,           // slight overflow to the right
+                    top: 0,
+                    right: 0,
                     child: SizedBox(
-                      width: .48*w,          // ~48% of card width
-                      height:.48* h,
+                      width: .48 * w,
+                      height: .48 * h,
                       child: SvgPicture.asset(
                         'assets/svg/whats_bg_top_right.svg',
                         fit: BoxFit.contain,
@@ -66,14 +61,12 @@ class WhatsNewCard extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  // Bottom-left decorative SVG
                   Positioned(
-                    bottom: 0,          // slight overflow downward
-                    left: 0,            // slight overflow to the left
+                    bottom: 0,
+                    left: 0,
                     child: SizedBox(
-                      width: .8*w,
-                      height: .6*h,
+                      width: .80 * w,
+                      height: .60 * h,
                       child: SvgPicture.asset(
                         'assets/svg/whats_bg_bottom_left.svg',
                         fit: BoxFit.contain,
@@ -93,11 +86,13 @@ class WhatsNewCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text("What’s New Today?",
-                            style: t.textTheme.titleMedium?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                            )),
+                        Text(
+                          'whats_new_today'.tr(),
+                          style: t.textTheme.titleMedium?.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         SizedBox(height: 12.h),
                         Row(
                           children: [
@@ -105,7 +100,10 @@ class WhatsNewCard extends StatelessWidget {
                             SizedBox(width: 8.w),
                             Expanded(
                               child: Text(
-                                "Next Reminder: Take a wound photo at ${nextReminder.format(context)}",
+                                // e.g. "Next Reminder: Take a wound photo at 3:00 PM"
+                                'next_reminder_take_photo'.tr(
+                                  namedArgs: {'time': nextReminder.format(context)},
+                                ),
                                 style: t.textTheme.bodyMedium?.copyWith(color: Colors.white),
                               ),
                             ),
@@ -118,7 +116,10 @@ class WhatsNewCard extends StatelessWidget {
                             SizedBox(width: 8.w),
                             Expanded(
                               child: Text(
-                                "Last Week’s Progress: +$weeklyProgressPercent% improvement",
+                                // e.g. "Last Week’s Progress: +12% improvement"
+                                'last_week_progress'.tr(
+                                  namedArgs: {'percent': weeklyProgressPercent.toString()},
+                                ),
                                 style: t.textTheme.bodyMedium?.copyWith(color: Colors.white),
                               ),
                             ),

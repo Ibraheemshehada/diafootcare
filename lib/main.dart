@@ -10,10 +10,12 @@ void main() async {
 
   runApp(
     EasyLocalization(
-      supportedLocales: [Locale('en'), Locale('ar')],
+      supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translations',
-      fallbackLocale: Locale('en'),
-      child: DiaFootApp(),
+      fallbackLocale: const Locale('en'),
+      saveLocale: true,          // ✅ persist choice
+      useOnlyLangCode: true,     // ✅ use 'en' / 'ar' file names
+      child: const DiaFootApp(),
     ),
   );
 }

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +17,7 @@ class CaptureTipsDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Tips for Clear Wound Photos",
+              'tips_title'.tr(),
               style: t.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w700,
                 fontSize: 16.sp,
@@ -24,11 +25,13 @@ class CaptureTipsDialog extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 12.h),
-            _bullet("Make sure the wound is well-lit.", t),
-            _bullet("Hold the phone 15–20 cm away.", t),
-            _bullet("Keep the wound centered in the frame.", t),
-            _bullet("Avoid blurry or shaky shots.", t),
-            _bullet("Remove any bandages before taking the photo.", t),
+
+            _bullet('tip_well_lit'.tr(), t),
+            _bullet('tip_distance'.tr(), t),
+            _bullet('tip_center'.tr(), t),
+            _bullet('tip_avoid_blur'.tr(), t),
+            _bullet('tip_remove_bandage'.tr(), t),
+
             SizedBox(height: 16.h),
             Row(
               children: [
@@ -36,8 +39,8 @@ class CaptureTipsDialog extends StatelessWidget {
                   child: SizedBox(
                     height: 44.h,
                     child: ElevatedButton(
-                      onPressed: () => Navigator.pop(context, "ok"),
-                      child: Text("Ok", style: TextStyle(fontSize: 14.sp)),
+                      onPressed: () => Navigator.pop(context, 'ok'),
+                      child: Text('ok'.tr(), style: TextStyle(fontSize: 14.sp)),
                     ),
                   ),
                 ),
@@ -46,8 +49,8 @@ class CaptureTipsDialog extends StatelessWidget {
                   child: SizedBox(
                     height: 44.h,
                     child: OutlinedButton(
-                      onPressed: () => Navigator.pop(context, "dont_show"),
-                      child: Text("Don’t Show again", style: TextStyle(fontSize: 14.sp)),
+                      onPressed: () => Navigator.pop(context, 'dont_show'),
+                      child: Text('dont_show_again'.tr(), style: TextStyle(fontSize: 14.sp)),
                     ),
                   ),
                 ),
@@ -65,7 +68,7 @@ class CaptureTipsDialog extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("•  ", style: TextStyle(fontSize: 14.sp)),
+          Text('•  ', style: TextStyle(fontSize: 14.sp)),
           Expanded(
             child: Text(
               text,

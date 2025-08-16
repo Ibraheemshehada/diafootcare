@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,8 +7,18 @@ class HomeHeader extends StatelessWidget {
   final VoidCallback onNotifications;
   const HomeHeader({super.key, required this.userFirstName, required this.onNotifications});
 
+  String _greeting(BuildContext context, String name) {
+    final h = TimeOfDay.now().hour;
+    final part = h < 12
+        ? 'morning'
+        : (h < 17 ? 'afternoon' : (h < 21 ? 'evening' : 'night'));
+    // e.g. "greeting.morning"
+    return 'greeting.$part'.tr(namedArgs: {'name': name});
+  }
+
   @override
   Widget build(BuildContext context) {
+    final t = Theme.of(context);
     return Padding(
       padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 0),
       child: Row(
@@ -21,10 +32,14 @@ class HomeHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Good morning, $userFirstName",
-                    style: Theme.of(context).textTheme.titleMedium),
-                Text("Keep taking care",
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey)),
+                Text(
+                  _greeting(context, userFirstName),
+                  style: t.textTheme.titleMedium,
+                ),
+                Text(
+                  'keep_taking_care'.tr(),
+                  style: t.textTheme.bodyMedium?.copyWith(color: t.colorScheme.onSurfaceVariant),
+                ),
               ],
             ),
           ),

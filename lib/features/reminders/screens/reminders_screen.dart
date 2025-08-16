@@ -28,7 +28,7 @@ class RemindersScreen extends StatelessWidget {
     final week = List.generate(7, (i) => start.add(Duration(days: i)));
 
     return Scaffold(
-      appBar: AppBar(title: Text('daily_reminders'.tr(), style: TextStyle(fontSize: 18.sp))),
+      appBar: AppBar(title: Text('daily_reminders'.tr(), style: TextStyle(fontSize: 18.sp)),backgroundColor: t.scaffoldBackgroundColor,),
       floatingActionButton:FloatingActionButton(
         onPressed: () async {
           final r = await Navigator.push(

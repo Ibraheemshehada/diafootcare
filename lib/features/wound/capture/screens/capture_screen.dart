@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:camera/camera.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +28,7 @@ class CaptureScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: Text(
-                    'Take a Wound Photo',
+                    'take_wound_photo'.tr(),
                     style: t.textTheme.titleLarge?.copyWith(fontSize: 20.sp),
                   ),
                 ),
@@ -51,7 +53,6 @@ class CaptureScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 12.h),
                     child: ShutterButton(
-                      // make sure your ShutterButton uses .w/.h inside too
                       disabled: vm.isBusy || !vm.isInitialized,
                       onPressed: () async {
                         final shot = await vm.takePicture();
@@ -82,7 +83,7 @@ class _PreviewArea extends StatelessWidget {
       // Web: no loader, just a hint
       return Center(
         child: Text(
-          'Click the shutter to open your camera',
+          'web_shutter_hint'.tr(),
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             fontSize: 14.sp,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -88,22 +89,26 @@ class MainShell extends StatelessWidget {
                       BottomNavigationBarItem(
                         icon: _svgIcon("assets/svg/home.svg", false),
                         activeIcon: _svgIcon("assets/svg/home_filled.svg", true),
-                        label: 'Home',
+                        label: 'nav_home'.tr(),
+                        tooltip: 'nav_home'.tr(),
                       ),
                       BottomNavigationBarItem(
                         icon: _icon(Icons.schedule_outlined, false),
                         activeIcon: _icon(Icons.schedule_rounded, true),
-                        label: 'History',
+                        label: 'nav_history'.tr(),
+                        tooltip: 'nav_history'.tr(),
                       ),
                       BottomNavigationBarItem(
                         icon: _svgIcon("assets/svg/scan.svg", false),
                         activeIcon: _svgIcon("assets/svg/scan_filled.svg", true),
-                        label: 'Capture',
+                        label: 'nav_capture'.tr(),
+                        tooltip: 'nav_capture'.tr(),
                       ),
                       BottomNavigationBarItem(
                         icon: _svgIcon("assets/svg/user.svg", false),
                         activeIcon: _svgIcon("assets/svg/user_filled.svg", true),
-                        label: 'Profile',
+                        label: 'nav_profile'.tr(),
+                        tooltip: 'nav_profile'.tr(),
                       ),
                     ],
                   ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -112,7 +113,7 @@ class ServiceTile extends StatelessWidget {
                       ),
                       SizedBox(height: 10.h),
                       Text(
-                        item.title,
+                        item.title.tr(),
                         style: (item.isPrimary
                             ? t.textTheme.titleMedium?.copyWith(
                             color: Colors.white, fontWeight: FontWeight.w700)
@@ -120,7 +121,7 @@ class ServiceTile extends StatelessWidget {
                       ),
                       SizedBox(height: 6.h),
                       Text(
-                        item.subtitle,
+                        item.subtitle.tr(),
                         style: (item.isPrimary
                             ? t.textTheme.bodySmall?.copyWith(color: Colors.white.withOpacity(.9))
                             : t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant)),

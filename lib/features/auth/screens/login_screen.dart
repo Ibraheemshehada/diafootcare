@@ -62,7 +62,7 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 10.h),
               Text(
-                'Login',
+                'login'.tr(),
                 style: TextStyle(
                   fontSize: 26.sp,
                   fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 8.h),
               Text(
-                'Please log in to continue monitoring your wound',
+                'login_subtitle'.tr(),
                 style: TextStyle(
                   fontSize: 14.sp,
                   color: Colors.grey,

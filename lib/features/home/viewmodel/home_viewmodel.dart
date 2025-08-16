@@ -7,14 +7,16 @@ class HomeViewModel extends ChangeNotifier {
   TimeOfDay nextReminder = const TimeOfDay(hour: 15, minute: 0);
   int weeklyProgressPercent = 12;
 
-  final List<NoteModel> recentNotes = [
-    NoteModel(
+  final List<Note> recentNotes = [
+    Note(
       date: DateTime(2025, 7, 24),
       text: "The wound looks slightly smaller today. No signs of redness. Pain level lower than yesterday.",
+      id: "1"
     ),
-    NoteModel(
+    Note(
       date: DateTime(2025, 7, 23),
       text: "Mild redness around the edges. Applied ointment after cleaning. Pain when touching.",
+      id: "2"
     ),
   ];
 
@@ -38,7 +40,7 @@ class HomeViewModel extends ChangeNotifier {
       subtitle: "Record size and depth changes over time.",
       iconAsset: "assets/svg/Log_Measurements.svg",
       bgSvgAsset: "assets/svg/bg_measurements.svg",
-      route: "/measure",
+      route: "/WoundHistoryScreen",
       isPrimary: false,
       bgScale: 0.75,           // slightly larger than tile
       bgAlignment: Alignment.topRight,
