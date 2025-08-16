@@ -9,9 +9,14 @@ final ThemeData lightTheme = ThemeData(
     seedColor: const Color(0xff077FFF),
     brightness: Brightness.light,
   ),
-
+  cardColor: Colors.white,
   scaffoldBackgroundColor: Colors.white,
-
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      unselectedLabelStyle: TextStyle(color: Colors.black),
+      selectedLabelStyle: TextStyle(color: Color(0xff077FFF)),
+      selectedItemColor: Color(0xff077FFF),
+      unselectedItemColor: Colors.black
+  ),
   checkboxTheme: CheckboxThemeData(
     fillColor: MaterialStateProperty.resolveWith(
           (states) =>

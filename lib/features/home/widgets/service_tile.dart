@@ -23,8 +23,8 @@ class ServiceTile extends StatelessWidget {
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          t.colorScheme.primary.withOpacity(.95),
-          t.colorScheme.primary,
+        t.colorScheme.primary.withOpacity(.95),
+      t.colorScheme.primary
         ],
       )
           : null,

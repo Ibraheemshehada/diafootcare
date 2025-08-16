@@ -1,4 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Permissions (runtime prompt still needed in code) -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- If you will record video/audio later, also add: -->
+    <!-- <uses-permission android:name="android.permission.RECORD_AUDIO" /> -->
+
+    <!-- Declare camera hardware so preview works well on more devices -->
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
     <application
         android:label="diafoot_care"
         android:name="${applicationName}"
@@ -42,4 +51,5 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+
 </manifest>

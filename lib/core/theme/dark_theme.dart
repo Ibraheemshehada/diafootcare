@@ -10,11 +10,21 @@ final ThemeData darkTheme = ThemeData(
   ),
 
   scaffoldBackgroundColor: const Color(0xFF020818),
+  cardColor: Color(0xff1A2030),
 
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+
+    unselectedLabelStyle: TextStyle(color: Colors.white),
+    selectedLabelStyle: TextStyle(color: Color(0xff077FFF)),
+    selectedItemColor: Color(0xff077FFF),
+    unselectedItemColor: Colors.white
+  ),
   checkboxTheme: CheckboxThemeData(
     fillColor: MaterialStateProperty.resolveWith(
-          (states) =>
-      states.contains(MaterialState.selected) ? const Color(0xff077FFF) : Colors.white,
+      (states) =>
+          states.contains(MaterialState.selected)
+              ? const Color(0xff077FFF)
+              : Colors.white,
     ),
   ),
 
@@ -54,9 +64,7 @@ final ThemeData darkTheme = ThemeData(
       textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
       minimumSize: Size(double.infinity, 55.h),
       padding: EdgeInsets.symmetric(vertical: 16.h),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.r),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
     ),
   ),
 
@@ -67,9 +75,7 @@ final ThemeData darkTheme = ThemeData(
       textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
       minimumSize: Size(double.infinity, 55.h),
       padding: EdgeInsets.symmetric(vertical: 16.h),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.r),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
     ),
   ),
 );

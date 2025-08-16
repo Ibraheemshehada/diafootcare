@@ -1,3 +1,8 @@
+plugins {
+    id("com.android.application") version "8.12.0" apply false
+    id("com.android.library")     version "8.12.0" apply false
+    kotlin("android")             version "1.9.24" apply false // or your current Kotlin, 1.9.x is safe
+}
 allprojects {
     repositories {
         google()
@@ -19,3 +24,4 @@ subprojects {
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
+

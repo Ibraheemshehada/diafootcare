@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../home/screens/home_screen.dart';
 import '../../history/screens/wound_history_screen.dart';
-
 import '../../profile/screens/profile_screen.dart';
 import '../../wound/capture/screens/capture_screen.dart';
 import '../controllers/shell_controller.dart';
@@ -15,6 +15,7 @@ class MainShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = Theme.of(context);
+
     final pages = const [
       HomeScreen(),
       WoundHistoryScreen(),
@@ -22,11 +23,43 @@ class MainShell extends StatelessWidget {
       ProfileScreen(),
     ];
 
+    // Navbar background color
+    final Color navBackgroundColor =
+    t.brightness == Brightness.dark ? const Color(0xff1A2030) : t.scaffoldBackgroundColor;
+
+    // Colors for icons/labels
+    const Color activeColor = Color(0xff077FFF);
+    final Color inactiveColor =
+    t.brightness == Brightness.light ? Colors.grey : Colors.white;
+
+    Widget _svgIcon(String asset, bool active) {
+      return SvgPicture.asset(
+        asset,
+        width: 24,
+        height: 24,
+        colorFilter: ColorFilter.mode(
+          active ? activeColor : inactiveColor,
+          BlendMode.srcIn,
+        ),
+      );
+    }
+
+    Widget _icon(IconData icon, bool active) {
+      return Icon(
+        icon,
+        size: 24,
+        color: active ? activeColor : inactiveColor,
+      );
+    }
+
     return Consumer<ShellController>(
       builder: (context, shell, _) {
         return WillPopScope(
           onWillPop: () async {
-            if (shell.index != 0) { shell.setIndex(0); return false; }
+            if (shell.index != 0) {
+              shell.setIndex(0);
+              return false;
+            }
             return true;
           },
           child: Scaffold(
@@ -38,10 +71,7 @@ class MainShell extends StatelessWidget {
             bottomNavigationBar: SafeArea(
               top: false,
               child: Container(
-                decoration: BoxDecoration(
-                  color: t.scaffoldBackgroundColor,
-             //     boxShadow: const [BoxShadow(blurRadius: 10, color: Colors.black12, offset: Offset(0, -2))],
-                ),
+                color: navBackgroundColor,
                 child: Padding(
                   padding: EdgeInsets.only(top: 6.h),
                   child: BottomNavigationBar(
@@ -49,16 +79,32 @@ class MainShell extends StatelessWidget {
                     onTap: shell.setIndex,
                     type: BottomNavigationBarType.fixed,
                     elevation: 0,
-                    backgroundColor: Colors.transparent,
-                    selectedItemColor: t.colorScheme.primary,
-                    unselectedItemColor: t.colorScheme.onSurface.withOpacity(.6),
-                    selectedLabelStyle: TextStyle(fontWeight: FontWeight.w600, fontSize: 12.sp),
+                    backgroundColor: navBackgroundColor,
+                    selectedItemColor: activeColor,
+                    unselectedItemColor: inactiveColor,
+                    selectedLabelStyle: TextStyle(fontSize: 12.sp),
                     unselectedLabelStyle: TextStyle(fontSize: 12.sp),
-                    items: const [
-                      BottomNavigationBarItem(icon: Icon(Icons.home_outlined),         activeIcon: Icon(Icons.home_rounded),           label: 'Home'),
-                      BottomNavigationBarItem(icon: Icon(Icons.schedule_outlined),     activeIcon: Icon(Icons.schedule_rounded),       label: 'Wound History'),
-                      BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_outlined), activeIcon: Icon(Icons.qr_code_scanner),    label: 'Capture'),
-                      BottomNavigationBarItem(icon: Icon(Icons.person_outline),        activeIcon: Icon(Icons.person),                  label: 'Profile'),
+                    items: [
+                      BottomNavigationBarItem(
+                        icon: _svgIcon("assets/svg/home.svg", false),
+                        activeIcon: _svgIcon("assets/svg/home_filled.svg", true),
+                        label: 'Home',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: _icon(Icons.schedule_outlined, false),
+                        activeIcon: _icon(Icons.schedule_rounded, true),
+                        label: 'History',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: _svgIcon("assets/svg/scan.svg", false),
+                        activeIcon: _svgIcon("assets/svg/scan_filled.svg", true),
+                        label: 'Capture',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: _svgIcon("assets/svg/user.svg", false),
+                        activeIcon: _svgIcon("assets/svg/user_filled.svg", true),
+                        label: 'Profile',
+                      ),
                     ],
                   ),
                 ),

@@ -1,3 +1,5 @@
+import 'package:camera/camera.dart';
+import 'package:diafoot_care/features/reminders/screens/reminders_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:diafoot_care/features/auth/screens/forget_password_screen.dart';
@@ -7,6 +9,10 @@ import 'package:diafoot_care/features/auth/screens/signup_screen.dart';
 import 'package:diafoot_care/features/auth/screens/splash_screen.dart';
 
 import 'package:diafoot_care/features/shell/screens/main_shell.dart'; // NEW import for shell
+
+
+import '../features/wound/capture/screens/capture_screen.dart';
+import '../features/wound/capture/screens/preview_screen.dart';
 
 class AppRoutes {
   static const String splash = '/splash';
@@ -26,6 +32,7 @@ class AppRoutes {
   static const String measure = '/measure';
   static const String reminders = '/reminders';
   static const String notes = '/notes';
+  static const String preview = '/preview';
 
   static final Map<String, WidgetBuilder> routes = {
     splash: (_) => const SplashScreen(),
@@ -36,5 +43,16 @@ class AppRoutes {
 
     // The shell replaces direct HomeScreen usage
     mainShell: (_) => const MainShell(),
+    reminders: (_) => const RemindersScreen(),
+
+    // Capture flow
+    capture: (_) => const CaptureScreen(),
+    preview: (context) {
+      // For preview, pass XFile via arguments
+      final args = ModalRoute.of(context)!.settings.arguments;
+      return PreviewScreen(file: args as XFile);
+    },
   };
+
+
 }
