@@ -46,7 +46,7 @@ class SetPasswordViewModel extends ChangeNotifier {
       SnackBar(content: Text('Password updated successfully')),
     );
 
-    Navigator.pushReplacementNamed(context, '/login');
+    Navigator.pushReplacementNamed(context, '/');
   }
 
   @override

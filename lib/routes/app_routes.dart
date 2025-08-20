@@ -18,6 +18,7 @@ import '../features/profile/screens/edit_profile_screen.dart';
 import '../features/profile/screens/profile_screen.dart';
 import '../features/settings/screens/export_data_screen.dart';
 import '../features/settings/screens/senior_tips_screen.dart';
+
 import '../features/wound/capture/screens/capture_screen.dart';
 import '../features/wound/capture/screens/preview_screen.dart';
 
@@ -47,6 +48,8 @@ class AppRoutes {
   static const String seniorTips = '/seniorTips';
   static const exportData = '/exportData';
 
+
+
   static final Map<String, WidgetBuilder> routes = {
     splash: (_) => const SplashScreen(),
     login: (_) => const LoginScreen(),
@@ -67,6 +70,7 @@ class AppRoutes {
     profile: (_) => const ProfileScreen(),
     editProfile: (_) => const EditProfileScreen(),
     changePassword: (_) => const ChangePasswordScreen(),
+
     preview: (context) {
       // For preview, pass XFile via arguments
       final args = ModalRoute.of(context)!.settings.arguments;

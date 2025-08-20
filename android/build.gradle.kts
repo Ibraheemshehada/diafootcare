@@ -1,8 +1,3 @@
-plugins {
-    id("com.android.application") version "8.12.0" apply false
-    id("com.android.library")     version "8.12.0" apply false
-    kotlin("android")             version "1.9.24" apply false // or your current Kotlin, 1.9.x is safe
-}
 allprojects {
     repositories {
         google()
@@ -10,18 +5,14 @@ allprojects {
     }
 }
 
-val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
-rootProject.layout.buildDirectory.value(newBuildDir)
-
+rootProject.buildDir = "../build"
 subprojects {
-    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
 subprojects {
     project.evaluationDependsOn(":app")
 }
 
-tasks.register<Delete>("clean") {
-    delete(rootProject.layout.buildDirectory)
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
 }
-

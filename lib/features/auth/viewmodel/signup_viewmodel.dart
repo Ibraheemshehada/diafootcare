@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/services/auth_services.dart';
+
 class SignUpViewModel extends ChangeNotifier {
+  final AuthService _authService = AuthService();
+
+  // Controllers for user input
   final emailController = TextEditingController();
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
+  // Error messages
   String? emailError;
   String? firstNameError;
   String? lastNameError;
@@ -16,11 +22,13 @@ class SignUpViewModel extends ChangeNotifier {
   bool isLoading = false;
   bool isPasswordVisible = false;
 
+  // Toggle password visibility
   void togglePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
     notifyListeners();
   }
 
+  // Form validation
   bool validate() {
     emailError = null;
     firstNameError = null;
@@ -44,21 +52,31 @@ class SignUpViewModel extends ChangeNotifier {
         confirmPasswordError == null;
   }
 
+  // Sign up using Firebase AuthService
   Future<void> signUp(BuildContext context) async {
     if (!validate()) return;
 
     isLoading = true;
     notifyListeners();
 
-    await Future.delayed(const Duration(seconds: 2)); // simulate
-    isLoading = false;
-    notifyListeners();
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Signed up successfully')),
+    final result = await _authService.signUp(
+      emailController.text,
+      passwordController.text,
     );
 
-    Navigator.pop(context); // Go back to login
+    if (result != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Signed up successfully')),
+      );
+      Navigator.pushReplacementNamed(context, '/home'); // Navigate to home after sign-up
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Sign-up failed')),
+      );
+    }
+
+    isLoading = false;
+    notifyListeners();
   }
 
   @override

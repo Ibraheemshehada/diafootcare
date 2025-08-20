@@ -20,14 +20,13 @@ class LoginForm extends StatelessWidget {
                 SizedBox(height: 40.h),
 
                 // Email / Mobile
-              Text(tr('email_or_mobile')) ,
-                SizedBox(height: 10.h,),
+                Text(tr('email_or_mobile')),
+                SizedBox(height: 10.h),
                 TextFormField(
                   controller: vm.emailController,
                   keyboardType: TextInputType.emailAddress,
                   style: TextStyle(fontSize: 16.sp),
                   decoration: InputDecoration(
-                    // labelText: tr('email_or_mobile'),
                     errorText: vm.emailError != null ? tr(vm.emailError!) : null,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.r),
@@ -45,15 +44,14 @@ class LoginForm extends StatelessWidget {
 
                 SizedBox(height: 20.h),
 
-                Text(tr('password')),
-                SizedBox(height: 10.h,),
                 // Password
+                Text(tr('password')),
+                SizedBox(height: 10.h),
                 TextFormField(
                   controller: vm.passwordController,
                   obscureText: !vm.isPasswordVisible,
                   style: TextStyle(fontSize: 16.sp),
                   decoration: InputDecoration(
-                  //  labelText: tr('password'),
                     errorText: vm.passwordError != null ? tr(vm.passwordError!) : null,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.r),
@@ -64,7 +62,9 @@ class LoginForm extends StatelessWidget {
                     ),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        vm.isPasswordVisible ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                        vm.isPasswordVisible
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
                       ),
                       onPressed: () => vm.togglePasswordVisibility(),
                     ),
@@ -102,8 +102,7 @@ class LoginForm extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 14.h),
                     ),
                     child: vm.isLoading
-                        ? const CircularProgressIndicator(
-                        color: Colors.white, strokeWidth: 2)
+                        ? const CircularProgressIndicator(color: Colors.white, strokeWidth: 2)
                         : Text(
                       tr('login'),
                       style: TextStyle(fontSize: 12.sp),

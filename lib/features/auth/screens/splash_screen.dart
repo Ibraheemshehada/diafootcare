@@ -25,8 +25,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _boot() async {
-    // Parallel: show splash for ~2s and load prefs
     final settings = context.read<SettingsViewModel>();
+
+    // Load preferences and wait for splash screen display (~2 seconds)
     await Future.wait([
       Future.delayed(const Duration(seconds: 2)),
       settings.loadPrefs(),
@@ -36,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     // Gate on terms acceptance
     if (!settings.acceptedTerms) {
-      // Block until accepted, then continue
+      // Block navigation until terms are accepted
       final accepted = await Navigator.push<bool>(
         context,
         MaterialPageRoute(
@@ -47,15 +48,18 @@ class _SplashScreenState extends State<SplashScreen> {
       if (!mounted) return;
 
       if (accepted == true) {
-        Navigator.pushReplacementNamed(context, AppRoutes.login);
+        Navigator.pushReplacementNamed(context, AppRoutes.login);  // Navigate to login
       } else {
-        // If user backs out, you could close app or stay on splash.
-        // Here we just stay.
+        // If user doesn't accept terms, decide on app behavior.
+        // Here we can choose to close the app or stay on the splash screen.
+        // For example, we can close the app if terms are not accepted:
+        // SystemNavigator.pop();  // To exit the app (you can choose this approach)
+        return; // Simply stay on splash screen if user refuses terms
       }
       return;
     }
 
-    // Terms already accepted → proceed to login
+    // If terms already accepted → Proceed to login
     Navigator.pushReplacementNamed(context, AppRoutes.login);
   }
 

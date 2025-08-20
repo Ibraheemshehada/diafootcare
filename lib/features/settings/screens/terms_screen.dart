@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import '../viewmodel/settings_viewmodel.dart';
 
 class TermsScreen extends StatelessWidget {
-  /// When true: user cannot go back and must accept to continue.
-  final bool blocking;
+  final bool blocking;  // Determines if the user can navigate back or must accept the terms
+
   const TermsScreen({super.key, this.blocking = false});
 
   @override
@@ -28,7 +28,7 @@ class TermsScreen extends StatelessWidget {
     );
 
     return WillPopScope(
-      onWillPop: () async => !blocking, // block back if required
+      onWillPop: () async => !blocking, // Prevent back if required
       child: Scaffold(
         appBar: AppBar(title: Text('terms_title'.tr())),
         body: ListView(
@@ -60,11 +60,9 @@ class TermsScreen extends StatelessWidget {
             SizedBox(height: 6.h),
             Text('terms_footer'.tr(),
                 style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant)),
-            SizedBox(height: blocking ? 72.h : 0), // leave room for bottom button
+            SizedBox(height: blocking ? 72.h : 0), // Leave room for bottom button
           ],
         ),
-
-        // Only show the bottom button when blocking is true
         bottomNavigationBar: blocking
             ? SafeArea(
           child: Padding(

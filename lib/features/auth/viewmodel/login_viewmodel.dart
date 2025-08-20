@@ -1,6 +1,6 @@
-import 'package:diafoot_care/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:diafoot_care/routes/app_routes.dart';
 
 class LoginViewModel extends ChangeNotifier {
   final emailController = TextEditingController();
@@ -12,6 +12,8 @@ class LoginViewModel extends ChangeNotifier {
   bool isLoading = false;
   bool rememberMe = false;
   bool isPasswordVisible = false;
+
+  // Validate form fields
   bool validateForm() {
     emailError = null;
     passwordError = null;
@@ -30,6 +32,7 @@ class LoginViewModel extends ChangeNotifier {
     return emailError == null && passwordError == null;
   }
 
+  // Firebase login method
   Future<void> loginUser(BuildContext context) async {
     if (!validateForm()) return;
 
@@ -37,28 +40,41 @@ class LoginViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
-      // await FirebaseAuth.instance.signInWithEmailAndPassword(
-      //   email: emailController.text.trim(),
-      //   password: passwordController.text,
-      // );
-      Navigator.pushNamed(context, AppRoutes.mainShell);
-      // TODO: Navigate to HomeScreen
+      // Sign in with email and password
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text,
+      );
+
+      // Navigate to the main screen if login is successful
+      Navigator.pushReplacementNamed(context, AppRoutes.mainShell);
+
     } on FirebaseAuthException catch (e) {
-      // TODO: Show dialog/snackbar
-      debugPrint(e.message);
+      // Handle Firebase errors
+      String errorMessage = 'An error occurred. Please try again later.';
+
+      if (e.code == 'user-not-found') {
+        errorMessage = 'No user found for that email.';
+      } else if (e.code == 'wrong-password') {
+        errorMessage = 'Incorrect password.';
+      } else if (e.code == 'invalid-email') {
+        errorMessage = 'Invalid email format.';
+      }
+
+      // Show the error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMessage)),
+      );
+    } catch (e) {
+      // Handle other errors
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Unexpected error: $e')),
+      );
     } finally {
       isLoading = false;
       notifyListeners();
     }
   }
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
 
   void toggleRememberMe(bool? value) {
     rememberMe = value ?? false;
@@ -68,5 +84,12 @@ class LoginViewModel extends ChangeNotifier {
   void togglePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "756491342369",
+    "project_id": "diafootcare-95912",
+    "storage_bucket": "diafootcare-95912.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756491342369:android:23b1c300fdc8ea45500960",
+        "android_client_info": {
+          "package_name": "com.example.voyro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt30OTdnAy5Yeu7ttDSo6_LRCnyKZh4O0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -8,6 +8,7 @@ import '../viewmodel/profile_viewmodel.dart';
 import '../widgets/profile_tile.dart';
 import 'edit_profile_screen.dart';
 import 'change_password_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Import FirebaseAuth
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -66,6 +67,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
 
+          // Other Profile Tiles (Edit Info, Change Password, etc.)
           ProfileTile(
             leading: Icons.badge_rounded,
             title: 'edit_personal_info'.tr(),
@@ -117,7 +119,10 @@ class ProfileScreen extends StatelessWidget {
               height: 48.h,
               child: OutlinedButton.icon(
                 style: OutlinedButton.styleFrom(foregroundColor: Colors.red),
-                onPressed: () {},
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut(); // Firebase logout
+                  Navigator.pushReplacementNamed(context, AppRoutes.login); // Navigate to login screen
+                },
                 icon: const Icon(Icons.logout_rounded),
                 label: Text('logout'.tr()),
               ),
